@@ -1,0 +1,19 @@
+.card {
+    border: 1px solid black;
+    border-radius: 30px;
+    margin: 20px;
+    padding:40px;
+    width: 200px;
+    text-align: center;
+    background-color: beige;
+}
+
+
+.card:hover{
+    box-shadow: 2px 2px 4px 4px black;
+}
+.main{
+    display: flex;
+    justify-content: center;
+   
+}
