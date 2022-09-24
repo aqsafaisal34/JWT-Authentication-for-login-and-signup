@@ -27,7 +27,7 @@ export default function NavBar() {
     return (
       <nav className='nav'>
       <div className="userName"> <h1>{state?.user?.firstName}{state?.user?.lastName}</h1></div>
-        <ul>
+        {/* <ul>
           <li> <Link to="/">Home</Link>             </li>
           <li> <Link to="/profile">Profile</Link>       </li>
           <li> <Link to="/gallery">Gallery</Link>   </li>
@@ -36,7 +36,29 @@ export default function NavBar() {
           <li> <Link to="/signup">Signup</Link>   </li>
            
           <li> <Link to="/login" onClick={logoutHandler}>Logout</Link>  </li>
-        </ul>
+        </ul> */}
+
+        {/* Auth Guard */}
+        {(state.isLogin === true) ?
+                <ul>
+                    <li> <Link to="/">Home</Link>             </li>
+                    <li> <Link to="/profile">Profile</Link>       </li>
+                    <li> <Link to="/gallery">Gallery</Link>   </li>
+                    <li> <Link to="/login" onClick={logoutHandler}>Logout</Link>  </li>
+
+                </ul>
+                :
+                null
+            }
+            
+            {(state.isLogin === false) ?
+                <ul>
+                    <li> <Link to="/login">Login</Link>       </li>
+                    <li> <Link to="/signup">Signup</Link>     </li>
+                </ul>
+                :
+                null
+            }
       </nav>
     )
   }

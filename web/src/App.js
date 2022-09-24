@@ -8,7 +8,8 @@ import NavBar from './components/navbar';
 import {
   BrowserRouter as Router,
   Routes,
-  Route
+  Route,
+  Navigate
 } from "react-router-dom";
 import { useEffect, useContext } from "react"
 import { GlobalContext } from './context';
@@ -59,7 +60,7 @@ function App() {
     <NavBar />
 
 
-      <Routes>
+      {/* <Routes>
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -67,6 +68,42 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/" element={<Home />} />
+
+      </Routes> */}
+       {/* Auth Guard */}
+
+
+      <Routes>
+        {(state.isLogin === true) ?
+          <>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </>
+          :
+          null
+        }
+        {(state.isLogin === false) ?
+          <>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="*" element={<Navigate to="/login" />} />
+          </>
+          :
+          null
+        }
+        {(state.isLogin === null) ?
+          <>
+            Loading...
+          </>
+          :
+          null
+        }
+
+
+
+
 
       </Routes>
     </Router>
